@@ -18,8 +18,9 @@ io.on('connection', (socket) => {
 
     socket.broadcast.emit('newMessage', generateMessage('Admin', 'New User connected!'));
 
-    socket.on('createMessage', (message) => {
+    socket.on('createMessage', (message, callback) => {
         io.emit('newMessage', generateMessage(message.from, message.text));
+        callback('Server says: got your message, all is good!');
         // socket.broadcast.emit('newMessage', {
         //     from: message.from,
         //     text: message.text,
